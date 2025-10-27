@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # fuerza HTTPS
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: wp.alejandrohj.es
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wordpress-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - wp.alejandrohj.es
+    secretName: wordpress-tls

@@ -1,0 +1,11 @@
+# Archivos y directorios generados por Terraform
+
+# Archivos de estado locales (incluyendo backups)
+**/*.tfstate
+**/*.tfstate.*
+
+# Directorio que contiene los binarios, plugins y módulos
+.terraform/
+
+# Registros de fallos (crash logs)
+*.crash

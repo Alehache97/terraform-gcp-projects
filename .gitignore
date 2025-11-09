@@ -5,7 +5,10 @@
 **/*.tfstate.*
 
 # Directorio que contiene los binarios, plugins y módulos
-.terraform/
+**/.terraform/
+
+# Ficheros de lock de Terraform
+**/.terraform.lock.hcl
 
 # Registros de fallos (crash logs)
 *.crash

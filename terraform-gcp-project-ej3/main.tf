@@ -95,7 +95,7 @@ resource "google_compute_instance" "bastion" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-12"
+      image = "debian-cloud/debian-13"
       size  = var.disk_size
     }
   }
@@ -124,7 +124,7 @@ resource "google_compute_instance" "servidor" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-12"
+      image = "debian-cloud/debian-13"
       size  = var.disk_size
     }
   }
@@ -153,7 +153,7 @@ resource "google_compute_instance" "cliente" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-12"
+      image = "debian-cloud/debian-13"
       size  = var.disk_size
     }
   }

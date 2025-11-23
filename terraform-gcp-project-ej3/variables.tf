@@ -31,7 +31,7 @@ variable "disk_size" {
 variable "ssh_key_path" {
   description = "Ruta a la clave pública SSH"
   type        = string
-  default     = "/home/macale/.ssh/id_rsa.pub"
+  default     = "/home/macalex/.ssh/id_rsa.pub"
 }
 
 variable "my_ip" {

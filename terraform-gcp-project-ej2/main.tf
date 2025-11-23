@@ -30,17 +30,34 @@ resource "google_compute_firewall" "ssh_firewall" {
 }
 
 # ----------------------------
-# MÁQUINA VIRTUAL CONECTADA A LA RED
+# DISCO ADICIONAL DESDE SNAPSHOT
+# ----------------------------
+resource "google_compute_disk" "disco2" {
+  name     = "disco2-vm-red-restaurado"
+  type     = "pd-standard"
+  zone     = var.zone
+  size     = var.disk_size
+  snapshot = var.disk_snapshot
+}
+
+# ----------------------------
+# MÁQUINA VIRTUAL CON IMAGEN PERSONALIZADA Y DISCO ADICIONAL
 # ----------------------------
 resource "google_compute_instance" "vm_red" {
   name         = "vm-ejemplo2"
   machine_type = var.machine_type
 
+  # Disco principal (boot) desde imagen personalizada
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-12"
+      image = var.boot_image
       size  = var.disk_size
     }
+  }
+
+  # Disco adicional restaurado desde snapshot
+  attached_disk {
+    source = google_compute_disk.disco2.id
   }
 
   network_interface {

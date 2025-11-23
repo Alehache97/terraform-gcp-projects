@@ -22,14 +22,20 @@ variable "machine_type" {
   default     = "e2-micro"
 }
 
+variable "os_image" {
+  description = "Imagen del sistema operativo para la VM"
+  type        = string
+  default     = "debian-cloud/debian-13"
+}
+
 variable "disk_size" {
   description = "Tamaño del disco en GB"
   type        = number
-  default     = 10
+  default     = 20
 }
 
 variable "ssh_key_path" {
   description = "Ruta a la clave pública SSH"
   type        = string
-  default     = "/home/macale/.ssh/id_rsa.pub"
+  default     = "/home/macalex/.ssh/id_rsa.pub"
 }

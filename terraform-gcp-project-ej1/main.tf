@@ -1,4 +1,14 @@
 # ----------------------------
+# DISCO ADICIONAL VACÍO
+# ----------------------------
+resource "google_compute_disk" "disco2" {
+  name  = "disco2-vm-red"
+  type  = "pd-standard"
+  zone  = var.zone
+  size  = 10
+}
+
+# ----------------------------
 # MÁQUINA VIRTUAL SIMPLE
 # ----------------------------
 
@@ -9,9 +19,14 @@ resource "google_compute_instance" "vm_simple" {
   # Disco principal
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-12"
+      image = var.os_image
       size  = var.disk_size
     }
+  }
+
+  # Disco adicional
+  attached_disk {
+    source = google_compute_disk.disco2.id
   }
 
   # Interfaz de red: red por defecto con IP pública

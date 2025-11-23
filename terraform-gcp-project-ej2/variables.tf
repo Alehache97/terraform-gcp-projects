@@ -22,16 +22,28 @@ variable "machine_type" {
   default     = "e2-micro"
 }
 
+variable "boot_image" {
+  description = "Imagen personalizada para el disco de arranque"
+  type        = string
+  default     = "imagen-vm-ejemplo1"
+}
+
+variable "disk_snapshot" {
+  description = "Snapshot del disco de datos para restaurar"
+  type        = string
+  default     = "disco2-vm-red"
+}
+
 variable "disk_size" {
-  description = "Tamaño del disco en GB"
+  description = "Tamaño del disco adicional en GB"
   type        = number
-  default     = 10
+  default     = 20
 }
 
 variable "ssh_key_path" {
   description = "Ruta a la clave pública SSH"
   type        = string
-  default     = "/home/macale/.ssh/id_rsa.pub"
+  default     = "/home/macalex/.ssh/id_rsa.pub"
 }
 
 variable "network_name" {

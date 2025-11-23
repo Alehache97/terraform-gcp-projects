@@ -1,5 +1,4 @@
 #!/bin/bash
-# === Script de inicialización del cliente PostgreSQL ===
 LOGFILE="/var/log/startup-cliente.log"
 exec > >(tee -a "$LOGFILE") 2>&1
 

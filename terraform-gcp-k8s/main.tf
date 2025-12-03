@@ -40,26 +40,27 @@ resource "google_container_cluster" "gke_cluster" {
   subnetwork               = google_compute_subnetwork.subnet_gke.id
   remove_default_node_pool = true
   deletion_protection      = false
+
+  # Obligatorio por la API
   initial_node_count       = 1
 }
 
-# Node pool
+# Node pool principal (3 nodos, 50 GB, autoscaling)
 resource "google_container_node_pool" "node_pool" {
   name     = "node-pool"
   location = "europe-west1-b"
   cluster  = google_container_cluster.gke_cluster.name
 
-  # Número inicial de nodos (puede escalar a 0 automáticamente si no hay carga)
-  node_count = 1
+  node_count = 3
 
   node_config {
     machine_type = "e2-medium"
+    disk_size_gb = 50
     oauth_scopes = ["https://www.googleapis.com/auth/cloud-platform"]
   }
 
-  # Autoscaling configurado según tu solicitud
   autoscaling {
-    min_node_count = 0
+    min_node_count = 3
     max_node_count = 30
   }
 }

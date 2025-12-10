@@ -33,12 +33,3 @@ variable "node_max" {
   default = 20
 }
 
-variable "domain" {
-  type    = string
-  default = "alejandrohj.es"
-}
-
-variable "email" {
-  type    = string
-  default = "alejandroherrera140697@gmail.com"
-}

@@ -25,11 +25,11 @@ variable "node_machine_type" {
 
 variable "node_min" {
   type    = number
-  default = 0
+  default = 3
 }
 
 variable "node_max" {
   type    = number
-  default = 20
+  default = 30
 }
 

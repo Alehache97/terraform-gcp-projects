@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: nextcloud
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: nextcloud
@@ -32,5 +33,18 @@ spec:
             secretKeyRef:
               name: nextcloud-db-secret
               key: mysql-password
+        - name: NEXTCLOUD_TRUSTED_DOMAINS
+          value: "nc.alejandrohj.es"
+        - name: OVERWRITEPROTOCOL
+          value: "https"
+        - name: OVERWRITEHOST
+          value: "nc.alejandrohj.es"
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nextcloud-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: nextcloud-storage
+        persistentVolumeClaim:
+          claimName: nextcloud-pvc

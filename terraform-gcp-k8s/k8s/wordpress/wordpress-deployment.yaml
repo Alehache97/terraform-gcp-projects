@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: wordpress
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: wordpress
@@ -35,3 +35,10 @@ spec:
               key: mysql-password
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: wordpress-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: wordpress-storage
+        persistentVolumeClaim:
+          claimName: wordpress-pvc
